@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <title>高考倒计时背景</title>
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="css/bg_style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link href="css/style2.css"  rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/fliptimer.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Atomic+Age' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<main id="main" data-page-id="home">
+    <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+        <div class="shadow-left"></div>
+        <div class="shadow-right"></div>
+        <div class="shadow-bottom"></div>
+        <div class="shadow-top"></div>
+    </div>
+</main>
+
+<div class="layui-container" id="wrap">
+    <div class="layui-row">
+        <div class="layui-col-lg3 layui-col-md3">
+            中国天气网数据接入
+            <br>
+            尚在开发中
+        </div>
+        <div class="layui-col-lg6 layui-col-md6">
+            <div class="layui-container">
+                <div class="layui-row" id="name-roller-row">
+                    <div class="layui-col-lg12 layui-col-md12" id="name-roller">
+                        一个永远不会点到冯钰荃的点名器
+                        <br>
+                        尚在开发中
+                    </div>
+                </div>
+                <div class="layui-row" id="clock-row">
+                    <div class="layui-col-lg12 layui-col-md12" id="clock">
+                        <p>距离高考还有：</p>
+                        <div class="ft_counter">
+                            <script type="text/javascript">
+                                $(".ft_counter").EightycloudsFliptimer({
+                                    enddate    : "24 December 2022 12:00:00 GMT",
+                                    callback   : function(){
+                                        alert("Countdown is Complete!");
+                                    }
+                                });
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row" id="sentence-roller-row">
+                    <div class="layui-col-lg12 layui-col-md12" id="sentence-roller">
+                        励志短句，格言，随机播放
+                        <br>
+                        尚在开发中
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg3 layui-col-md3">
+            一个动态的，优雅的，美丽的，还能显示下课上课时间的课程表
+            <br>
+            尚在开发中
+        </div>
+    </div>
+</div>
+
+<!-- jQuery 和 Bootstrap 集成包（集成了 Popper） -->
+
+<script src="./layui/layui.js"></script>
+<script src="js/TweenLite.min.js"></script>
+<script src="js/bg_script.js"></script>
+</body>
+</html>

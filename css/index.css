@@ -1,0 +1,41 @@
+
+#wrap{
+    /*background-color: #00F7DE;*/
+    height: 70%;
+    top: 15%;
+    bottom: 15%;
+    width: 100%;
+}
+
+div{
+    color: #9F9F9F;
+}
+
+main{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#clock{
+    height: 33%;
+}
+
+#name-roller{
+    height: 33%;
+}
+
+#sentence-roller{
+    height: 33%;
+}
+
+.layui-col-lg6 .layui-row{
+    height: 23.1vh;
+}
+
+#clock p{
+    color: #eb7350;
+    font-size: xxx-large;
+    text-align: center;
+}
