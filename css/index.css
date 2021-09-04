@@ -49,14 +49,10 @@ main{
 }
 
 .class-process-near {
-    width: 10%;
-    float: left;
     background-color: #eeeeee;
 }
 
 .class-process .layui-progress-big{
-    left: 30%;
-    width: 70%;
 }
 
 .center{
@@ -65,4 +61,14 @@ main{
 
 .post-text{
     font-size: large;
+}
+.layui-table th{
+    font-size: 40px;
+    line-height: 50px;
+    background-color: #393D49;
+}
+
+.layui-table td{
+    font-size: 40px;
+    line-height: 50px;
 }

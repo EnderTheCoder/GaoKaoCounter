@@ -7,9 +7,9 @@
 
     <!-- Bootstrap 的 CSS 文件 -->
     <link rel="stylesheet" href="css/bg_style.css">
-    <link rel="stylesheet" href="css/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
     <link href="css/style2.css"  rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
     <script type="text/javascript" src="js/jquery.easing.js"></script>
@@ -53,6 +53,7 @@
                 </div>
                 <div class="layui-row" id="clock-row">
                     <div class="layui-col-lg12 layui-col-md12" id="clock">
+                        <p>（貌似确实差了两百天整，需要重写计时器）</p>
                         <p>距离高考还有：</p>
                         <div class="ft_counter">
                             <script type="text/javascript">
@@ -80,181 +81,48 @@
             </div>
         </div>
         <div class="layui-col-lg3 layui-col-md3 layui-card">
-            <div class="layui-card-header">还没做完动态显示的课程表(JS代码多的杀人)</div>
+            <div class="layui-card-header">优雅的动态信息课程表（再加上显示下课时间的功能就更好了）</div>
             <div class="layui-card-body">
-                <table class="layui-table">
+                <table class="layui-table class-list">
                     <thead>
                     <tr>
-                        <th>周一</th>
-                        <th>周二</th>
-                        <th>周三</th>
-                        <th>周四</th>
-                        <th>周五</th>
-                        <th>周六</th>
-                        <th>周日</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    <!--早读-->
-                    <tr>
-                        <td>早读</td>
-                        <td>早读</td>
-                        <td>早读</td>
-                        <td>早读</td>
-                        <td>早读</td>
-                        <td>早读</td>
-                        <td>早读</td>
-                    </tr>
-                    <!--早读-->
-                    <tr>
-                        <td>生物</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>化学</td>
-                        <td>自习</td>
-                    </tr>
-                    <tr>
-                        <td colspan="7" class="center">大吃特吃</td>
-                    </tr>
-                    <!--第一节-->
-                    <tr>
-                        <td>数学</td>
-                        <td>物理</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                        <td>数学</td>
-                        <td>生物</td>
-                        <td>物理</td>
-                    </tr>
-                    <!--第二节-->
-                    <tr>
-                        <td>数学</td>
-                        <td>英语</td>
-                        <td>数学</td>
-                        <td>英语</td>
-                        <td>物理</td>
-                        <td>生物</td>
-                        <td>物理</td>
-                    </tr>
-                    <!--第三节-->
-                    <tr>
-                        <td>物理</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                        <td>英语</td>
-                        <td>化学</td>
-                    </tr>
-                    <!--第四节-->
-                    <tr>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>英语</td>
-                        <td>数学</td>
-                        <td>英语</td>
-                        <td>英语</td>
-                        <td>化学</td>
-                    </tr>
-                    <tr>
-                        <td colspan="7" class="center">大吃特吃+躺平</td>
-                    </tr>
-                    <!--第五节-->
-                    <tr>
-                        <td>英语</td>
-                        <td>生物</td>
-                        <td>物理</td>
-                        <td>化学</td>
-                        <td>化学</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                    </tr>
-                    <!--第六节-->
-                    <tr>
-                        <td>化学</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>物理</td>
-                        <td>生物</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                    </tr>
-                    <!--第七节-->
-                    <tr>
-                        <td>生物</td>
-                        <td>数学</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>英语</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                    </tr>
-                    <!--第八节-->
-                    <tr>
-                        <td>英语</td>
-                        <td>英语</td>
-                        <td>英语</td>
-                        <td>英语</td>
-                        <td>英语</td>
-                        <td>数学</td>
-                        <td>语文</td>
-                    </tr>
-                    <!--下午自习-->
-                    <tr>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>化学</td>
-                        <td>生物</td>
-                        <td>自习</td>
-                    </tr>
 
-                    <tr>
-                        <td colspan="7" class="center">大吃特吃</td>
-                    </tr>
-                    <!--晚自习1-->
-                    <tr>
-                        <td>数学</td>
-                        <td>数学</td>
-                        <td>数学</td>
-                        <td>数学</td>
-                        <td>数学</td>
-                        <td>数学</td>
-                        <td>数学</td>
-                    </tr>
-                    <!--晚自习2-->
-                    <tr>
-                        <td>物理</td>
-                        <td>物理</td>
-                        <td>物理</td>
-                        <td>物理</td>
-                        <td>物理</td>
-                        <td>物理</td>
-                        <td>物理</td>
-                    </tr>
-                    <!--晚自习3-->
-                    <tr>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                        <td>语文</td>
-                    </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="class-process">
-                <div class="class-process-near">语文</div>
-                <div class="class-process-near">8:00</div>
-                <div class="class-process-near">8:40</div>
-                <div class="layui-progress layui-progress-big" lay-showPercent="true">
-                    <div class="layui-progress-bar layui-bg-blue" lay-percent="80%"></div>
-                </div>
+                <table class="layui-table time-post">
+                    <thead>
+                    <colgroup>
+                        <col width="100">
+                        <col width="200">
+                    </colgroup>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>正在进行</td>
+                            <td class="going-class">%CLASS_NAME%</td>
+                        </tr>
+                        <tr>
+                            <td>开始于</td>
+                            <td class="start-time">%START_TIME%</td>
+                        </tr>
+                        <tr>
+                            <td>结束于</td>
+                            <td class="end-time">%END_TIME%</td>
+                        </tr>
+                        <tr>
+                            <td>进度</td>
+                            <td class="process-bar">
+                                <div class="layui-progress layui-progress-big" lay-showPercent="true">
+                                    <div class="layui-progress-bar layui-bg-red" lay-percent="1/1"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -265,5 +133,6 @@
 <script src="./layui/layui.js"></script>
 <script src="js/TweenLite.min.js"></script>
 <script src="js/bg_script.js"></script>
+<script src="js/timeController.js"></script>
 </body>
 </html>
