@@ -12,7 +12,7 @@ let classList = [
     [['早读'],['生物'],['数学'],['物理'],['语文'],['英语'],['化学'],['生物'],['英语'],['英语'],['化学'],['数学'],['物理'],['语文']],
     [['早读'],['化学'],['生物'],['生物'],['英语'],['英语'],['数学'],['数学'],['数学'],['数学'],['生物'],['数学'],['物理'],['语文']],
 ];
-let gapName = [""];
+let gapName = ["大吃特吃","课间","课间","大课间","课间","大吃特吃+午休","课间","课间","课间","课间","大吃特吃","课间","课间","放学"];
 let classListHeadTemplate = "<th>%DAY%</th>";
 let classListBodyTemplate = "<tr><td>%CLASS_NAME%</td></tr>";
 
@@ -22,7 +22,7 @@ function init(){
     changeClassList();
     changeTimePost();
     setInterval(changeClassList, 600000);
-    setInterval(changeTimePost, 30000);
+    setInterval(changeTimePost, 1000);
     return true;
 }
 
@@ -48,20 +48,43 @@ function changeTimePost(){
     let onClassMark = false;
     let now = new Date();
     let min = now.getHours() * 60 + now.getMinutes();
+
     for (let i = 0; i < classStartSchedule.length; i++) {
         if (classStartSchedule[i][0] * 60 + classStartSchedule[i][1] <= min &&
             classEndSchedule[i][0] * 60 + classEndSchedule[i][1] > min) {
             $(".going-class").html(classList[now.getDay()][i][0]);
             $(".start-time").html("" + classStartSchedule[i][0] + ":" + classStartSchedule[i][1]);
             $(".end-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
-            $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 + classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
+            $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
             onClassMark = true;
         }
     }
     if (!onClassMark) {
-        $(".going-class ").html("无");
-        $(".start-time").html("无");
-        $(".end-time").html("无");
-        $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1")
+        // $(".going-class ").html("无");
+        // $(".start-time").html("无");
+        // $(".end-time").html("无");
+        // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1")
+        for (let i = 0; i < classStartSchedule.length - 1; i++) {
+            let endTime = classStartSchedule[i + 1][0] * 60 + classStartSchedule[i + 1][1];
+            let startTime = classEndSchedule[i][0] * 60 + classEndSchedule[i][1];
+            if (min >= startTime && min < endTime) {
+                $(".going-class ").html(gapName[i]);
+                $(".start-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
+                $(".end-time").html("" + classStartSchedule[i + 1][0] + ":" + classStartSchedule[i + 1][1]);
+                $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
+            }
+            if (now > classEndSchedule[classEndSchedule.length - 1][0] * 60 + classEndSchedule[classEndSchedule.length - 1][1]) {
+                $(".going-class ").html("放学");
+                $(".start-time").html("21:50");
+                $(".end-time").html("5:40");
+                $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+            }
+            if (now < classStartSchedule[0][0] * 60 + classStartSchedule[0][1]) {
+                $(".going-class ").html("你来的太早了");
+                $(".start-time").html("21:50");
+                $(".end-time").html("5:40");
+                $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+            }
+        }
     }
 }
