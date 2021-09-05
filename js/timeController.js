@@ -57,6 +57,7 @@ function changeTimePost(){
             $(".end-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
             $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
             onClassMark = true;
+            break;
         }
     }
     if (!onClassMark) {
@@ -64,6 +65,7 @@ function changeTimePost(){
         // $(".start-time").html("无");
         // $(".end-time").html("无");
         // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1")
+        let offClassMark = false;
         for (let i = 0; i < classStartSchedule.length - 1; i++) {
             let endTime = classStartSchedule[i + 1][0] * 60 + classStartSchedule[i + 1][1];
             let startTime = classEndSchedule[i][0] * 60 + classEndSchedule[i][1];
@@ -72,7 +74,11 @@ function changeTimePost(){
                 $(".start-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
                 $(".end-time").html("" + classStartSchedule[i + 1][0] + ":" + classStartSchedule[i + 1][1]);
                 $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
+                offClassMark = true;
+                break;
             }
+        }
+        if (!offClassMark){
             if (now > classEndSchedule[classEndSchedule.length - 1][0] * 60 + classEndSchedule[classEndSchedule.length - 1][1]) {
                 $(".going-class ").html("放学");
                 $(".start-time").html("21:50");
