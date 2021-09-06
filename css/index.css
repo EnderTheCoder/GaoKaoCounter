@@ -19,15 +19,18 @@ main{
 }
 
 #clock{
-    height: 48vh;
+    height: 47vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
 }
 
 #name-roller{
-    height: 16vh;
+    height: 15.5vh;
 }
 
 #sentence-roller{
-    height: 16vh;
+    height: 15.5vh;
 }
 
 .layui-col-lg6 .layui-row{
@@ -39,18 +42,25 @@ main{
 }
 
 #clock p{
-    color: #eb7350;
-    font-size: xxx-large;
+    color: #FFB800;
+    font-size: 6vh;
     text-align: center;
+    line-height: 6vh;
 }
 
-.layui-row > div{
-    border: #2D93CA 1px solid;
+#clock .clock-day span {
+    color: #FF5722;
 }
+
+#clock .clock-second span {
+    color: red;
+}
+
 
 .class-process-near {
     background-color: #eeeeee;
 }
+
 
 .class-process .layui-progress-big{
 }
@@ -63,12 +73,16 @@ main{
     font-size: large;
 }
 .layui-table th{
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 3.5vh;
+    line-height: 3.5vh;
     background-color: #393D49;
 }
 
 .layui-table td{
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 3vh;
+    line-height: 3vh;
+}
+
+.class-list-header{
+    padding-bottom: 39px;
 }
