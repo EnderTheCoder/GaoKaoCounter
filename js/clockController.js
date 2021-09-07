@@ -14,7 +14,7 @@ function changeClockTime() {
     let clockMinute = $(".clock-minute span");
     let clockSecond = $(".clock-second span");
     clockDay.html(Math.floor(clock / 86400000));
-    clockHour.html(Math.floor((clock / 1440000) % 24));
-    clockMinute.html(Math.floor((clock / 3600000) % 60));
+    clockHour.html(Math.floor((clock / 3600000) % 24));
+    clockMinute.html(Math.floor((clock / 60000) % 60));
     clockSecond.html(Math.floor((clock / 1000) % 60));
 }
