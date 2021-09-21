@@ -30,5 +30,5 @@ $(".sentence-counter").click(function () {
     if (nowBG < bgList.length - 1)
     nowBG += 1;
     else nowBG = 0;
-    $("html").css("background-image", "url(\"../img/bg/" + bgList[nowBG] + ".jpg\")");
+    $("html").css("background-image", "url(\"./img/bg/" + bgList[nowBG] + ".jpg\")");
 });
