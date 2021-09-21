@@ -8,6 +8,7 @@
 </head>
 <body>
 <form class="layui-form" action="">
+    请不要疯狂点提交导致重复提交，耐心等待出现成功提示
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">名句</label>
         <div class="layui-input-block">
@@ -17,7 +18,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">出处/人物</label>
         <div class="layui-input-block">
-            <input type="text" name="sentence_from" required  lay-verify="required" placeholder="请输入该句子的出处" autocomplete="off" class="layui-input">
+            <input type="text" name="sentence_from" required lay-verify="required" placeholder="请输入该句子的出处"
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -40,30 +42,33 @@
         if (r != null) return unescape(r[2]);
         return null; //返回参数值
     }
-    layui.use('form', function(){
-        var form = layui.form;
+
+    layui.use('form', function () {
+        let form = layui.form;
 
         //监听提交
-        form.on('submit(formDemo)', function(data){
+        form.on('submit(formDemo)', function (data) {
             // data = JSON.stringify(data.field);
             // data['class'] = getUrlParam("class");
             data.field.class = getUrlParam("class");
-            console.log(data)
-            $.ajax({
-                //请求方式
-                type : "POST",
-                // contentType: "application/x-form-urlencode",
-                dataType: 'json',
-                url : "api/module/insertSentence.php",
-                data: data.field,
-                success : function(result) {
-                    layer.msg("提交成功");
-                },
-                error : function(e){
-                    console.log(e.status);
-                    console.log(e.responseText);
-                }
-            });
+            if (data.field.class === null) alert("提交失败，您打开的页面错误")
+            else
+                $.ajax({
+                    //请求方式
+                    type: "POST",
+                    // contentType: "application/x-form-urlencode",
+                    dataType: 'json',
+                    url: "api/module/insertSentence.php",
+                    data: data.field,
+                    success: function (result) {
+                        alert("提交成功");
+                    },
+                    error: function (e) {
+                        alert("提交失败")
+                        console.log(e.status);
+                        console.log(e.responseText);
+                    }
+                });
             return false;
         });
     });
