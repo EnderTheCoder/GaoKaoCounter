@@ -1,6 +1,7 @@
 
 html{
-    background: url("../img/bg/bg_sunset.jpg") no-repeat;
+    background-image: url("../img/bg/bg_sunset.jpg");
+    background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100vh;
 }
