@@ -3,6 +3,7 @@ let classStartSchedule =
     [[5, 40], [7, 0], [8, 0], [8, 55], [10, 10], [11, 5], [14, 15], [15, 5], [15, 55], [16, 45], [17, 35], [18, 40], [19, 55], [21, 0]];
 let classEndSchedule =
     [[6, 30], [7, 50], [8, 45], [9, 40], [10, 55], [11, 50], [14, 55], [15, 45], [16, 35], [17, 25], [18, 10], [19, 45], [20, 50], [21, 50]];
+let classIntervalName = ["早一", "早二", "上一", "上二", "上三", "上四", "下一", "下二", "下三", "下四", "课活", "晚一", "晚二", "晚三"];
 
 let classList = [
     [],//一班
@@ -29,9 +30,9 @@ let classList = [
     [],//六班
 ];
 let gapName = ["大吃特吃", "课间", "课间", "大课间", "课间", "大吃特吃+午休", "课间", "课间", "课间", "课间", "大吃特吃", "课间", "课间", "放学"];
-let classListHeadTemplate = "<th>%DAY%</th>";
-let classListBodyTemplate = "<tr><td>%CLASS_NAME%</td></tr>";
-
+let classListHeadTemplate = "<th>时间</th><th>%DAY%</th>";
+let classListBodyTemplate = "<tr><td>%CLASS_INTERVAL_NAME%</td><td>%CLASS_NAME%</td></tr>";
+let classProgress;
 classListInit();
 
 function classListInit() {
@@ -70,7 +71,7 @@ function changeClassList() {
     let body = $(".class-list tbody");
     body.html("");
     for (let i = 0; i < classList[day].length; i++) {
-        body.append(classListBodyTemplate.replace("%CLASS_NAME%", classList[day][i][0]));
+        body.append((classListBodyTemplate.replace("%CLASS_NAME%", classList[day][i][0])).replace("%CLASS_INTERVAL_NAME%", classIntervalName[i]));
     }
 }
 
@@ -85,7 +86,7 @@ function changeTimePost() {
             $(".start-time").html("" + classStartSchedule[i][0] + ":" + classStartSchedule[i][1]);
             $(".end-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
             // $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
-            updateClassProgress("" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])));
+            classProgress = ((min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) / (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])));
             onClassMark = true;
             break;
         }
@@ -100,7 +101,7 @@ function changeTimePost() {
                 $(".start-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
                 $(".end-time").html("" + classStartSchedule[i + 1][0] + ":" + classStartSchedule[i + 1][1]);
                 // $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
-                updateClassProgress((min - startTime) / (endTime - startTime));
+                classProgress = ((min - startTime) / (endTime - startTime));
                 offClassMark = true;
                 break;
             }
@@ -111,59 +112,23 @@ function changeTimePost() {
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
                 // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
-                updateClassProgress("100%")
+                classProgress = 1;
             }
             if (now < classStartSchedule[0][0] * 60 + classStartSchedule[0][1]) {
                 $(".going-class ").html("你来的太早了");
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
                 // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
-                updateClassProgress("100%")
+                classProgress = 1;
             }
         }
     }
 }
 
 layui.use('element', function () {
-    let $ = layui.jquery
-        , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-
-    //触发事件
-    let active = {
-        setPercent: function () {
-            //设置50%进度
-            element.progress('demo', '50%')
-        }
-        , loading: function (othis) {
-            let DISABLED = 'layui-btn-disabled';
-            if (othis.hasClass(DISABLED)) return;
-
-            //模拟loading
-            let n = 0, timer = setInterval(function () {
-                n = n + Math.random() * 10 | 0;
-                if (n > 100) {
-                    n = 100;
-                    clearInterval(timer);
-                    othis.removeClass(DISABLED);
-                }
-                element.progress('demo', n + '%');
-            }, 300 + Math.random() * 1000);
-
-            othis.addClass(DISABLED);
-        }
-    };
-
-    $('.site-demo-active').on('click', function () {
-        let othis = $(this), type = $(this).data('type');
-        active[type] ? active[type].call(this, othis) : '';
-    });
+    let $ = layui.jquery, element = layui.element;
+    let timer = setInterval(function () {
+        element.progress("class-progress", Math.floor(classProgress * 100) + "%");
+    }, 1000);
 });
 
-function updateClassProgress(percent) {
-    layui.use('element', function () {
-        let element = layui.element;
-        element.progress('class-progress', percent);
-    });
-}
-
-updateClassProgress("1/24")

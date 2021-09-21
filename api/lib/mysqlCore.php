@@ -2,13 +2,13 @@
 
 class mysqlCore
 {
-    const DB_HOST = 'localhost';
+    const DB_HOST = '192.168.10.120';
 
-    const DB_USERNAME = 'ender';
+    const DB_USERNAME = 'counterDB';
 
     const DB_PASSWORD = 'Feng,HK,4778!';
 
-    const DB_NAME = 'GFW-Breaker';
+    const DB_NAME = 'counterDB';
 
     private $con;
     private $isError = false;
@@ -52,7 +52,7 @@ class mysqlCore
     //使用绑定参数执行带有输入的sql语句,$sql是sql语句,$params是参数数组
     public function bind_query($sql, $params = null, $debug = false)
     {
-        if ($params != null && !is_array($params)) $params = array(1 => $params);
+        if ($params != null && !is_array($params)) $params = array(0 => $params);
         try {
             $conn = $this->connect();
             $stmt = $conn->prepare($sql);
@@ -69,12 +69,26 @@ class mysqlCore
                 $this->ErrorMsg = '数据库查询错误,错误代码：' . $exception->getCode() . '错误信息：' . $exception->getMessage();
                 return $this->ErrorMsg;
             } else {
-                $return = new return_core();
+                $return = new returnCore();
                 $return->retMsg('dbErr', '数据库查询错误,错误代码：' . $exception->getCode() . '错误信息：' . $exception->getMessage());
                 return false;
             }
         }
     }
+
+//    public function insert($table, $data)
+//    {
+//        $fields = "";
+//        $values = "";
+//        foreach ($data as $field => $value) {
+//            $fields .= $field . ", ";
+////            $values .= $value . ", ";
+//        }
+//        $fields = substr($fields, 0, strlen($fields) - 3);
+////        $values = substr($values, 0, strlen($values) - 3);
+//
+//        $sql = 'INSERT INTO ' . $table . ' (' . $fields . ') VALUES ( ' . ' )';
+//    }
 
     function update($table, $key, $value, $c_key, $c_value, $c_function = '=')
     {

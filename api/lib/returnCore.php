@@ -105,6 +105,11 @@ class returnCore
         $this->returnValue['msg'] = $msg;
     }
 
+    public function setData($value)
+    {
+        $this->returnValue['data'] = $value;
+    }
+
     public function setVal($key, $value)
     {
         $this->returnValue['data'][$key] = $value;

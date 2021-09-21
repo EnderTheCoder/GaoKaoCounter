@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>名言提交页</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+<form class="layui-form" action="">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">名句</label>
+        <div class="layui-input-block">
+            <textarea name="sentence" placeholder="请输入句子的内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出处/人物</label>
+        <div class="layui-input-block">
+            <input type="text" name="sentence_from" required  lay-verify="required" placeholder="请输入该句子的出处" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<!-- 你的 HTML 代码 -->
+
+<script src="./layui/layui.js"></script>
+<script src="js/jquery.1.10.2.js"></script>
+<script>
+    function getUrlParam(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        let r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            // data = JSON.stringify(data.field);
+            // data['class'] = getUrlParam("class");
+            data.field.class = getUrlParam("class");
+            console.log(data)
+            $.ajax({
+                //请求方式
+                type : "POST",
+                // contentType: "application/x-form-urlencode",
+                dataType: 'json',
+                url : "api/module/insertSentence.php",
+                data: data.field,
+                success : function(result) {
+                    layer.msg("提交成功");
+                },
+                error : function(e){
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

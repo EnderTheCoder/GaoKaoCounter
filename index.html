@@ -27,7 +27,7 @@
     <div class="layui-row">
         <div class="layui-col-lg3 layui-col-md3 post-text layui-card">
 
-            <div class="layui-card-header">天气信息栏</div>
+            <div class="layui-card-header">滚动信息栏</div>
             <div class="layui-card-body">
                 这里不如改成高考英语单词循环播放
                 <br>
@@ -43,7 +43,7 @@
                         <div class="layui-card-header">点名器（这事不好说，万一就中了呢？）</div>
                         <div class="layui-card-body">
                             <div class="name-roller-window-1">周</div>
-                            <div class="name-roller-window-2">连</div>
+                            <div class="name-roller-window-2">某</div>
                             <div class="name-roller-window-3">学</div>
                         </div>
                     </div>
@@ -64,22 +64,25 @@
                     <div class="layui-col-lg12 layui-col-md12 post-text layui-card" id="sentence-roller">
                         <div class="layui-card-header">每日赠言</div>
                         <div class="layui-card-body">
-                            励志短句，格言，每六十秒随机播放一句
-                            <br>
-                            尚在开发中，会抽时间做一个投稿的网站可以自行投。通过后会随机显示在上面
-                            <br>
-                            或许我们应该在左侧放一个二维码可以让老师扫码投稿更好
-                            <br>
-                            建议二十四中直接把这个壁纸整全校统一
-                            <br>
-                            复杂的功能需要周末才能实现，晚上一小时能做的有限
+                            <div class="sentence-roller-left">
+                                <img src="https://api.nbhao.org/v1/qrcode/make?text=https://zhangnq.com"/>
+                                <p class="sentence-notice">
+                                    扫描二维码添加更多好句
+                                    <br>
+                                    （添加后所有班级可见）
+                                </p>
+                                <p class="sentence-counter">距离下一句切换还有<span></span>秒</p>
+                            </div>
+                            <div class="sentence-roller-right">
+                                <p>优雅，永不过时</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="layui-col-lg3 layui-col-md3 layui-card">
-            <div class="layui-card-header class-list-header">优雅的动态信息课程表(麻了怎么天天换课程表)(和左边对齐了，强迫症福音)</div>
+            <div class="layui-card-header class-list-header">优雅的动态信息课程表</div>
             <div class="layui-card-body">
                 <table class="layui-table class-list">
                     <thead>
@@ -131,5 +134,7 @@
 <script src="./layui/layui.js"></script>
 <script src="js/classListController.js"></script>
 <script src="js/clockController.js"></script>
+<script src="js/sentenceRollerController.js"></script>
+
 </body>
 </html>
