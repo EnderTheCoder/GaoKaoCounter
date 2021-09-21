@@ -5,28 +5,23 @@
     <meta charset="utf-8">
     <title>高考倒计时背景</title>
 
-    <!-- Bootstrap 的 CSS 文件 -->
-    <link rel="stylesheet" href="css/bg_style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="css/index.css">
-    <link href="css/style2.css"  rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.js"></script>
-    <script type="text/javascript" src="js/fliptimer.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Atomic+Age' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<main id="main" data-page-id="home">
-    <div class="canvas-wrap">
-        <canvas id="canvas"></canvas>
-        <div class="shadow-left"></div>
-        <div class="shadow-right"></div>
-        <div class="shadow-bottom"></div>
-        <div class="shadow-top"></div>
-    </div>
-</main>
+<!--<main id="main" data-page-id="home">-->
+<!--    <div class="canvas-wrap">-->
+<!--        <canvas id="canvas"></canvas>-->
+<!--        <div class="shadow-left"></div>-->
+<!--        <div class="shadow-right"></div>-->
+<!--        <div class="shadow-bottom"></div>-->
+<!--        <div class="shadow-top"></div>-->
+<!--    </div>-->
+<!--</main>-->
 
 <div class="layui-container" id="wrap">
     <div class="layui-row">
@@ -45,19 +40,17 @@
             <div class="layui-container">
                 <div class="layui-row" id="name-roller-row">
                     <div class="layui-col-lg12 layui-col-md12 post-text layui-card" id="name-roller">
-                        <div class="layui-card-header">五班大乐透</div>
+                        <div class="layui-card-header">点名器（这事不好说，万一就中了呢？）</div>
                         <div class="layui-card-body">
-                            一个永远不会点到冯钰荃的点名器
-                            <br>
-                            尚在开发中
-                            <br>
-                            又要重新分班所以先不做
+                            <div class="name-roller-window-1">周</div>
+                            <div class="name-roller-window-2">连</div>
+                            <div class="name-roller-window-3">学</div>
                         </div>
                     </div>
                 </div>
                 <div class="layui-row" id="clock-row">
                     <div class="layui-col-lg12 layui-col-md12 layui-card" id="clock">
-                        <div class="layui-card-header">高考倒计时(我们需要一个亮色的动态背景，这个黑色背景和白色卡片太违和了)</div>
+                        <div class="layui-card-header">高考倒计时</div>
                         <div class="layui-card-body">
                             <p>距高考剩余时间：</p>
                             <p class="clock-day"><span></span>天</p>
@@ -121,7 +114,7 @@
                         <tr>
                             <td>进度</td>
                             <td class="process-bar">
-                                <div class="layui-progress layui-progress-big" lay-showPercent="true">
+                                <div class="layui-progress layui-progress-big" lay-filter="class-progress" lay-showPercent="true">
                                     <div class="layui-progress-bar layui-bg-red" lay-percent="1/1"></div>
                                 </div>
                             </td>
@@ -136,9 +129,7 @@
 <!-- jQuery 和 Bootstrap 集成包（集成了 Popper） -->
 
 <script src="./layui/layui.js"></script>
-<script src="js/TweenLite.min.js"></script>
 <script src="js/classListController.js"></script>
 <script src="js/clockController.js"></script>
-<script src="js/bg_script.js"></script>
 </body>
 </html>

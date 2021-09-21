@@ -1,4 +1,4 @@
-let timePreFix = 2;
+let timePreFix = 0;
 let classStartSchedule =
     [[5, 40], [7, 0], [8, 0], [8, 55], [10, 10], [11, 5], [14, 15], [15, 5], [15, 55], [16, 45], [17, 35], [18, 40], [19, 55], [21, 0]];
 let classEndSchedule =
@@ -9,13 +9,13 @@ let classList = [
     [],//二班
     [],//三班
     [
-        [['早读'],['自习'],['英语'],['英语'],['物理'],['物理'],['语文'],['语文'],['语文'],['语文'],['自习'],['数学'],['物理'],['语文']],
-        [['早读'],['生物'],['语文'],['化学'],['数学'],['数学'],['生物'],['物理'],['英语'],['英语'],['化学'],['数学'],['物理'],['语文']],
-        [['早读'],['化学'],['语文'],['语文'],['生物'],['英语'],['化学'],['数学'],['物理'],['英语'],['生物'],['数学'],['物理'],['语文']],
-        [['早读'],['生物'],['英语'],['化学'],['物理'],['生物'],['语文'],['数学'],['化学'],['英语'],['化学'],['数学'],['物理'],['语文']],
-        [['早读'],['化学'],['数学'],['数学'],['英语'],['语文'],['生物'],['物理'],['化学'],['英语'],['生物'],['数学'],['物理'],['语文']],
-        [['早读'],['生物'],['物理'],['英语'],['数学'],['语文'],['化学'],['生物'],['英语'],['英语'],['化学'],['数学'],['物理'],['语文']],
-        [['早读'],['化学'],['化学'],['化学'],['生物'],['生物'],['数学'],['数学'],['数学'],['数学'],['生物'],['数学'],['物理'],['语文']],
+        [['早读'], ['自习'], ['英语'], ['英语'], ['物理'], ['物理'], ['语文'], ['语文'], ['语文'], ['语文'], ['自习'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['生物'], ['语文'], ['化学'], ['数学'], ['数学'], ['生物'], ['物理'], ['英语'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['化学'], ['语文'], ['语文'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['英语'], ['生物'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['生物'], ['英语'], ['化学'], ['物理'], ['生物'], ['语文'], ['数学'], ['化学'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['化学'], ['数学'], ['数学'], ['英语'], ['语文'], ['生物'], ['物理'], ['化学'], ['英语'], ['生物'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['生物'], ['物理'], ['英语'], ['数学'], ['语文'], ['化学'], ['生物'], ['英语'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['早读'], ['化学'], ['化学'], ['化学'], ['生物'], ['生物'], ['数学'], ['数学'], ['数学'], ['数学'], ['生物'], ['数学'], ['物理'], ['语文']],
     ],//四班
     [
         [['早读'], ['自习'], ['物理'], ['物理'], ['化学'], ['化学'], ['语文'], ['语文'], ['语文'], ['语文'], ['自习'], ['数学'], ['物理'], ['语文']],
@@ -84,7 +84,8 @@ function changeTimePost() {
             $(".going-class").html(classList[now.getDay()][i][0]);
             $(".start-time").html("" + classStartSchedule[i][0] + ":" + classStartSchedule[i][1]);
             $(".end-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
-            $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
+            // $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])))
+            updateClassProgress("" + (min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) + "/" + (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])));
             onClassMark = true;
             break;
         }
@@ -98,7 +99,8 @@ function changeTimePost() {
                 $(".going-class ").html(gapName[i]);
                 $(".start-time").html("" + classEndSchedule[i][0] + ":" + classEndSchedule[i][1]);
                 $(".end-time").html("" + classStartSchedule[i + 1][0] + ":" + classStartSchedule[i + 1][1]);
-                $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
+                // $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
+                updateClassProgress((min - startTime) / (endTime - startTime));
                 offClassMark = true;
                 break;
             }
@@ -108,14 +110,60 @@ function changeTimePost() {
                 $(".going-class ").html("放学");
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
-                $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+                // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+                updateClassProgress("100%")
             }
             if (now < classStartSchedule[0][0] * 60 + classStartSchedule[0][1]) {
                 $(".going-class ").html("你来的太早了");
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
-                $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+                // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
+                updateClassProgress("100%")
             }
         }
     }
 }
+
+layui.use('element', function () {
+    let $ = layui.jquery
+        , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+    //触发事件
+    let active = {
+        setPercent: function () {
+            //设置50%进度
+            element.progress('demo', '50%')
+        }
+        , loading: function (othis) {
+            let DISABLED = 'layui-btn-disabled';
+            if (othis.hasClass(DISABLED)) return;
+
+            //模拟loading
+            let n = 0, timer = setInterval(function () {
+                n = n + Math.random() * 10 | 0;
+                if (n > 100) {
+                    n = 100;
+                    clearInterval(timer);
+                    othis.removeClass(DISABLED);
+                }
+                element.progress('demo', n + '%');
+            }, 300 + Math.random() * 1000);
+
+            othis.addClass(DISABLED);
+        }
+    };
+
+    $('.site-demo-active').on('click', function () {
+        let othis = $(this), type = $(this).data('type');
+        active[type] ? active[type].call(this, othis) : '';
+    });
+});
+
+function updateClassProgress(percent) {
+    layui.use('element', function () {
+        let element = layui.element;
+        element.progress('class-progress', percent);
+    });
+}
+
+updateClassProgress("1/24")
