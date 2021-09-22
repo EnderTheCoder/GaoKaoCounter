@@ -51,20 +51,22 @@
             // data = JSON.stringify(data.field);
             // data['class'] = getUrlParam("class");
             data.field.class = getUrlParam("class");
-            if (data.field.class === null) alert("提交失败，您打开的页面错误")
+            if (data.field.class === null) alert("提交失败，您打开的页面链接参数错误")
             else
                 $.ajax({
                     //请求方式
                     type: "POST",
                     // contentType: "application/x-form-urlencode",
                     dataType: 'json',
+                    timeout: 5000,
                     url: "api/module/insertSentence.php",
                     data: data.field,
                     success: function (result) {
-                        alert("提交成功");
+                        alert("提交成功，你提交的语句将随机出现在桌面上");
+                        window.location.reload();
                     },
                     error: function (e) {
-                        alert("提交失败")
+                        alert("提交失败，原因可能是网络问题")
                         console.log(e.status);
                         console.log(e.responseText);
                     }

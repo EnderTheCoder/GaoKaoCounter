@@ -29,8 +29,7 @@ function getSentence() {
 }
 
 function getClassName(num) {
-    let classes = ["一班","二班","三班","四班","五班","六班"];
-    return classes[num - 1];
+    return num + "班";
 }
 
 function change() {
