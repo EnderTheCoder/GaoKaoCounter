@@ -1,7 +1,7 @@
 let qrCodeText = encodeURI((window.location.href).replace("index", "sentenceReceiver"));
 $(".sentence-roller-left img").attr("src", "https://api.nbhao.org/v1/qrcode/make?s=200&text=" + qrCodeText)
 
-let sentenceRollInterval = 30;
+let sentenceRollInterval = 120;
 let nowSecond = 0;
 let sentenceData;
 init();
@@ -29,7 +29,7 @@ function getSentence() {
 }
 
 function getClassName(num) {
-    return num + "班";
+    return num + "班提交";
 }
 
 function change() {
