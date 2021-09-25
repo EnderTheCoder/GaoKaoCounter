@@ -1,0 +1,7 @@
+html {
+    background-color: #2E2D3C;
+}
+.layui-card{
+    margin: 50px;
+    min-height: 500px;
+}

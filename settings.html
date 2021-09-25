@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>名言提交页</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-header">公告栏</div>
+                <div class="layui-card-body">
+                    壁纸的所有设置选项已经迁移到该地址，请收藏新地址，得益于优雅的新UI与我天才的设计，我们成功完美适配了手机和电脑
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-header">留言板提交</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" action="">
+                        请不要疯狂点提交导致重复提交，耐心等待出现成功提示
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">名句</label>
+                            <div class="layui-input-block">
+                                <textarea name="sentence" placeholder="请输入句子的内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">出处/人物</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sentence_from" required lay-verify="required"
+                                       placeholder="请输入该句子的出处"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="sentence">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-header">课程表修改</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <table class="layui-table class-list-edit">
+                                <colgroup>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="class-list-edit">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 你的 HTML 代码 -->
+
+<script src="./layui/layui.js"></script>
+<script src="js/jquery.1.10.2.js"></script>
+<script src="js/settingsController.js"></script>
+</body>
+</html>

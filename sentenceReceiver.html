@@ -36,6 +36,7 @@
 <script src="./layui/layui.js"></script>
 <script src="js/jquery.1.10.2.js"></script>
 <script>
+    window.location.href = "settings.html?class=" + getUrlParam("class");
     function getUrlParam(name) {
         let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
         let r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -61,7 +62,7 @@
                     url: "api/module/insertSentence.php",
                     data: data.field,
                     success: function (result) {
-                        alert("提交成功，你的语句将随机出现在桌面上");
+                        alert("别试了我还没做好，bug未修复");
                     },
                     error: function (e) {
                         alert("提交失败，可能是网络问题")
