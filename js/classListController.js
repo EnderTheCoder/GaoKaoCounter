@@ -20,8 +20,8 @@ let classList = [
 
     ["无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入","无数据请录入"],
 ];
-
-classList[34] =
+let classListTemp = [];
+classListTemp[34] =
     [
         [['早读'], ['语文'], ['语文'], ['语文'], ['生物'], ['生物'], ['数学'], ['数学'], ['数学'], ['数学'], ['新闻周刊'], ['自习'], ['自习'], ['自习']],
         [['早读'], ['生物'], ['生物'], ['语文'], ['语文'], ['化学'], ['英语'], ['英语'], ['化学'], ['数学'], ['数学'], ['物理'], ['物理'], ['自习']],
@@ -31,7 +31,7 @@ classList[34] =
         [['早读'], ['化学'], ['物理'], ['物理'], ['语文'], ['语文'], ['生物'], ['生物'], ['生物'], ['数学'], ['数学'], ['英语'], ['英语'], ['自习']],
         [['早读'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['学习'], ['自习']]
     ];
-classList[2] =
+classListTemp[2] =
     [
         [['自习'], ['自习'], ['英语'], ['英语'], ['历史'], ['历史'], ['数学'], ['数学'], ['数学'], ['数学'], ['自习'], ['自习'], ['自习'], ['自习']],
         [['英语/语文'], ['政史地'], ['语文'], ['语文'], ['地理'], ['政治'], ['历史'], ['数学'], ['英语'], ['英语'], ['地理'], ['数学'], ['政治/历史'], ['语文']],
@@ -41,7 +41,7 @@ classList[2] =
         [['英语/语文'], ['政史地'], ['语文'], ['英语'], ['英语'], ['数学'], ['历史'], ['地理'], ['政治'], ['英语'], ['地理'], ['数学'], ['政治/历史'], ['语文']],
         [['英语/语文'], ['政史地'], ['地理'], ['地理'], ['政治'], ['政治'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['政治/历史'], ['语文']]
     ];
-classList[4] =
+classListTemp[4] =
     [
         [['自习'], ['自习'], ['英语'], ['英语'], ['物理'], ['物理'], ['数学'], ['数学'], ['数学'], ['数学'], ['自习'], ['自习'], ['自习'], ['自习']],
         [['英语/语文'], ['化学/生物'], ['物理'], ['英语'], ['语文'], ['语文'], ['化学'], ['数学'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
@@ -51,7 +51,7 @@ classList[4] =
         [['英语/语文'], ['化学/生物'], ['数学'], ['语文'], ['英语'], ['英语'], ['物理'], ['化学'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
         [['英语/语文'], ['化学/生物'], ['生物'], ['生物'], ['化学'], ['化学'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['物理'], ['语文']]
     ];
-classList[3] =
+classListTemp[3] =
     [
         [['自习'], ['自习'], ['物理'], ['物理'], ['英语'], ['英语'], ['数学'], ['数学'], ['数学'], ['数学'], ['自习'], ['自习'], ['自习'], ['自习']],
         [['英语/语文'], ['化学/生物'], ['语文'], ['语文'], ['生物'], ['英语'], ['物理'], ['化学'], ['数学'], ['英语'], ['化学'], ['数学'], ['物理'], ['！语文']],
@@ -68,21 +68,18 @@ let classProgress;
 classListInit();
 
 function classListInit() {
-    getCurrentClassClassList(parseInt(getUrlParam("class")));
+    getCurrentClassClassList();
     changeClassList();
     changeTimePost();
-    setInterval(changeClassList, 600000);
+    setInterval(changeClassList, 1000);
+    setInterval(getCurrentClassClassList,1000);
     setInterval(changeTimePost, 1000);
     return true;
 }
 
-function getCurrentClassClassList(classID) {
+function getCurrentClassClassList() {
+    let classID = parseInt(getUrlParam("class"));
     if (classID === null) return;
-
-    if (classID === 3 || classID === 35 || classID === 5 || classID === 4) {
-        classList = classList[classID - 1];
-        return;
-    }
     let postData = {};
     postData.class = classID;
     $.ajax({
@@ -92,11 +89,16 @@ function getCurrentClassClassList(classID) {
         dataType: 'json',
         url : "api/module/getClassData.php",
         success : function(result) {
-            if (result.code === 200) {
-                classList = Object.values(result);
-                classList = classList["class_list"];
-                console.log("class_list");
-            } else console.log(result);
+            if (result.code === 100) {
+                classList = Object.values(result.data);
+                classList = classList[3];
+            } else {
+                if (classID === 3 || classID === 35 || classID === 5 || classID === 4) {
+                    classList = classListTemp[classID - 1];
+                    return;
+                }
+                console.log(result);
+            }
         },
         error : function(e){
             console.log(e.status);
@@ -167,7 +169,7 @@ function changeTimePost() {
         }
         if (!offClassMark) {
             if (now > classEndSchedule[classEndSchedule.length - 1][0] * 60 + classEndSchedule[classEndSchedule.length - 1][1]) {
-                $(".going-class ").html("放学");
+                $(".going-class ").html(gapName[gapName.length - 1]);
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
                 classProgress = 1;

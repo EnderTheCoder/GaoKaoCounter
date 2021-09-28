@@ -1,18 +1,4 @@
-let classList = [
-    ["无数据请录入7", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入1", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入2", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入3", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入4", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入5", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-
-    ["无数据请录入6", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入", "无数据请录入"],
-];
+let classList = [];
 
 let classListEditHeadTemplate = "<td>%WEEK_DAY%</td>";
 let classListEditBodyTemplateLine = "<tr>%LINE%</tr>";
@@ -31,7 +17,7 @@ function getUrlParam(name) {
 init();
 
 function init() {
-    // getCurrentClassClassList();
+    getCurrentClassClassList(getUrlParam("class"));
     renderClassList();
 }
 
@@ -85,7 +71,7 @@ layui.use('form', function () {
                 type: "POST",
                 // contentType: "application/x-form-urlencode",
                 dataType: 'json',
-                url: "api/debug.php",
+                url: "api/module/editClassList.php",
                 data: postData,
                 success: function (result) {
                     layer.alert("提交成功课程表将更新");
@@ -116,11 +102,21 @@ function getCurrentClassClassList(classID) {
         data: postData,
         dataType: 'json',
         url: "api/module/getClassData.php",
+        async: false,
         success: function (result) {
-            if (result.code === 200) {
-                classList = Object.values(result);
-                classList = classList["class_list"];
-            } else console.log(result);
+            if (result.code === 100) {
+                classList = Object.values(result.data);
+                console.log(classList);
+                classList = classList[3];
+            } else {
+                for (let i = 0; i < 7; i++) {
+                    classList[i] = [];
+                    for (let j = 0; j < 14; j++) {
+                        classList[i][j] = "无数据请录入";
+                    }
+                }
+                console.log(result);
+            }
         },
         error: function (e) {
             console.log(e.status);

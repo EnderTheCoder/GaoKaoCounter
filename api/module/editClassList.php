@@ -19,7 +19,7 @@ if ($mysql->getRowNum() == 0) {
     $mysql->bind_query("INSERT INTO class_data (class_num, class_list) VALUES (?, ?)", $fields);
 
 } else {
-    $mysql->update("class_data", "class_list", $_POST['class_list'], "class_num", $_POST['class']);
+    $mysql->update("class_data", "class_list", json_encode($_POST['class_list']), "class_num", $_POST['class']);
 }
 if ($mysql->isError()) $return->retMsg("dbErr");
 $return->retMsg("success");

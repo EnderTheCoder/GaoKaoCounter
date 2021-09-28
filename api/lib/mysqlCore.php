@@ -56,7 +56,7 @@ class mysqlCore
         try {
             $conn = $this->connect();
             $stmt = $conn->prepare($sql);
-            if ($params && empty($params))
+            if ($params)
                 for ($i = 1; $i <= count($params); $i++)
                     $stmt->bindValue($i, $params[$i], PDO::PARAM_STR);
             $stmt->execute();

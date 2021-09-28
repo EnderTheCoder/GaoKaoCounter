@@ -6,7 +6,6 @@ $return = new returnCore();
 $mysql = new mysqlCore();
 
 if (isEmpty($_POST['class'])) $return->retMsg("emptyParam");
-var_dump((int)$_POST['class']);
 
 $fields = array(
     1 => $_POST['class']
@@ -14,8 +13,10 @@ $fields = array(
 
 $mysql->bind_query("SELECT * FROM class_data WHERE class_num = ?", $fields);
 if ($mysql->getRowNum() > 0) {
-    $return->setData($mysql->fetchLine(null));
     $return->setType("success");
+    $data = $mysql->fetchLine(null);
+    $data['class_list'] = json_decode($data['class_list']);
+    $return->setData($data);
     $return->run();
 } else {
     $return->retMsg("noResult");

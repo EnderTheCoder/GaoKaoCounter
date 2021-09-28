@@ -97,7 +97,9 @@ class returnCore
 
     public function setType($type)
     {
-        $this->returnValue = $this->code[$type];
+        $this->returnValue['code'] = $this->code[$type]['code'];
+        $this->returnValue['msg'] = $this->code[$type]['msg'];
+
     }
 
     public function setMsg($msg)
