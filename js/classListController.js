@@ -51,7 +51,17 @@ classList[4] =
         [['英语/语文'], ['化学/生物'], ['数学'], ['语文'], ['英语'], ['英语'], ['物理'], ['化学'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
         [['英语/语文'], ['化学/生物'], ['生物'], ['生物'], ['化学'], ['化学'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['物理'], ['语文']]
     ];
-let gapName = ["皇上用膳", "课间", "课间", "伸胳膊拉腿", "课间", "进食+午休+听力", "课间", "课间", "课间", "课间", "满汉全席", "课间", "课间", "神庙逃亡"];
+classList[3] =
+    [
+        [['自习'], ['自习'], ['物理'], ['物理'], ['英语'], ['英语'], ['数学'], ['数学'], ['数学'], ['数学'], ['自习'], ['自习'], ['自习'], ['自习']],
+        [['英语/语文'], ['化学/生物'], ['语文'], ['语文'], ['生物'], ['英语'], ['物理'], ['化学'], ['数学'], ['英语'], ['化学'], ['数学'], ['物理'], ['！语文']],
+        [['英语/语文'], ['化学/生物'], ['物理'], ['化学'], ['数学'], ['数学'], ['生物'], ['语文'], ['英语'], ['英语'], ['化学'], ['数学'], ['物理'], ['语！文']],
+        [['英语/语文'], ['化学/生物'], ['英语'], ['化学'], ['物理'], ['生物'], ['语文'], ['数学'], ['体育'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文！']],
+        [['英语/语文'], ['化学/生物'], ['数学'], ['数学'], ['英语'], ['语文'], ['生物'], ['物理'], ['化学'], ['英语'], ['化学'], ['数学'], ['物理'], ['！语文！']],
+        [['英语/语文'], ['化学/生物'], ['物理'], ['英语'], ['数学'], ['语文'], ['化学'], ['生物'], ['英语'], ['英语'], ['化学'], ['数学'], ['物理'], ['！语！文！']],
+        [['英语/语文'], ['化学/生物'], ['生物'], ['生物'], ['化学'], ['化学'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['物理'], ['！语文！']]
+    ];
+let gapName = ["皇上用膳", "补觉也困", "刚刚睡醒", "伸胳膊拉腿", "已经饿了", "进食+午休+听力", "课间", "课间", "课间", "课间", "满汉全席", "课间", "课间", "神庙逃亡"];
 let classListHeadTemplate = "<th>时间</th><th>%DAY%</th>";
 let classListBodyTemplate = "<tr><td>%CLASS_INTERVAL_NAME%</td><td>%CLASS_NAME%</td></tr>";
 let classProgress;
@@ -150,7 +160,6 @@ function changeTimePost() {
                 $(".going-class ").html(gapName[i]);
                 $(".start-time").html("" + addZeroToTime(classEndSchedule[i][0]) + ":" + addZeroToTime(classEndSchedule[i][1]));
                 $(".end-time").html("" + addZeroToTime(classStartSchedule[i + 1][0]) + ":" + addZeroToTime(classStartSchedule[i + 1][1]));
-                // $(".process-bar .layui-progress-bar").attr("lay-percent", "" + (min - startTime) + "/" + (endTime - startTime));
                 classProgress = ((min - startTime) / (endTime - startTime));
                 offClassMark = true;
                 break;
@@ -161,14 +170,12 @@ function changeTimePost() {
                 $(".going-class ").html("放学");
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
-                // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
                 classProgress = 1;
             }
             if (now < classStartSchedule[0][0] * 60 + classStartSchedule[0][1]) {
                 $(".going-class ").html("你来的太早了");
                 $(".start-time").html("21:50");
                 $(".end-time").html("5:40");
-                // $(".process-bar .layui-progress-bar").attr("lay-percent", "1/1");
                 classProgress = 1;
             }
         }
