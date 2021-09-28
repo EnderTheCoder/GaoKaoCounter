@@ -79,7 +79,7 @@ function classListInit() {
 function getCurrentClassClassList(classID) {
     if (classID === null) return;
 
-    if (classID === 3 || classID === 35 || classID === 5) {
+    if (classID === 3 || classID === 35 || classID === 5 || classID === 4) {
         classList = classList[classID - 1];
         return;
     }
