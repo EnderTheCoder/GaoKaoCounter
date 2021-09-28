@@ -41,6 +41,16 @@ classList[2] =
         [['英语/语文'], ['政史地'], ['语文'], ['英语'], ['英语'], ['数学'], ['历史'], ['地理'], ['政治'], ['英语'], ['地理'], ['数学'], ['政治/历史'], ['语文']],
         [['英语/语文'], ['政史地'], ['地理'], ['地理'], ['政治'], ['政治'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['政治/历史'], ['语文']]
     ];
+classList[4] =
+    [
+        [['自习'], ['自习'], ['英语'], ['英语'], ['物理'], ['物理'], ['数学'], ['数学'], ['数学'], ['数学'], ['自习'], ['自习'], ['自习'], ['自习']],
+        [['英语/语文'], ['化学/生物'], ['物理'], ['英语'], ['语文'], ['语文'], ['化学'], ['数学'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['英语/语文'], ['化学/生物'], ['数学'], ['数学'], ['物理'], ['语文'], ['英语'], ['生物'], ['化学'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['英语/语文'], ['化学/生物'], ['化学'], ['物理'], ['语文'], ['英语'], ['数学'], ['生物'], ['体育'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['英语/语文'], ['化学/生物'], ['语文'], ['英语'], ['数学'], ['数学'], ['化学'], ['物理'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['英语/语文'], ['化学/生物'], ['数学'], ['语文'], ['英语'], ['英语'], ['物理'], ['化学'], ['生物'], ['英语'], ['化学'], ['数学'], ['物理'], ['语文']],
+        [['英语/语文'], ['化学/生物'], ['生物'], ['生物'], ['化学'], ['化学'], ['语文'], ['语文'], ['语文'], ['新闻周刊'], ['放荡不羁爱自由'], ['数学'], ['物理'], ['语文']]
+    ];
 let gapName = ["皇上用膳", "课间", "课间", "伸胳膊拉腿", "课间", "进食+午休+听力", "课间", "课间", "课间", "课间", "满汉全席", "课间", "课间", "神庙逃亡"];
 let classListHeadTemplate = "<th>时间</th><th>%DAY%</th>";
 let classListBodyTemplate = "<tr><td>%CLASS_INTERVAL_NAME%</td><td>%CLASS_NAME%</td></tr>";
@@ -48,7 +58,7 @@ let classProgress;
 classListInit();
 
 function classListInit() {
-    getCurrentClassClassList(getUrlParam("class"));
+    getCurrentClassClassList(parseInt(getUrlParam("class")));
     changeClassList();
     changeTimePost();
     setInterval(changeClassList, 600000);
@@ -58,8 +68,9 @@ function classListInit() {
 
 function getCurrentClassClassList(classID) {
     if (classID === null) return;
-    if (parseInt(getUrlParam("class")) === 3 || parseInt(getUrlParam("class")) === 35) {
-        classList = classList[parseInt(getUrlParam("class")) - 1];
+
+    if (classID === 3 || classID === 35 || classID === 5) {
+        classList = classList[classID - 1];
         return;
     }
     let postData = {};
