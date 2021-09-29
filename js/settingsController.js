@@ -17,10 +17,17 @@ function getUrlParam(name) {
 init();
 
 function init() {
+    checkParam();
     getCurrentClassClassList(getUrlParam("class"));
     renderClassList();
 }
 
+function checkParam() {
+    if (getUrlParam("class") == null) {
+        alert("不完整或错误的链接：您打开的链接缺少描述班级的参数，任何操作都是无效的");
+        window.close();
+    }
+}
 
 layui.use('form', function () {
     let form = layui.form;
@@ -30,8 +37,9 @@ layui.use('form', function () {
         // data = JSON.stringify(data.field);
         // data['class'] = getUrlParam("class");
         data.field.class = getUrlParam("class");
-        if (data.field.class === null) layer.alert("提交失败，您打开的页面链接中缺少班级参数")
-        else
+        if (data.field.class == null) {
+            layer.alert("提交失败，您打开的页面链接中缺少班级参数")
+        } else
             $.ajax({
                 //请求方式
                 type: "POST",

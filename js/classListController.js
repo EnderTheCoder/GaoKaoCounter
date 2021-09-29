@@ -96,7 +96,10 @@ function getCurrentClassClassList() {
                 if (classID === 3 || classID === 35 || classID === 5 || classID === 4) {
                     classList = classListTemp[classID - 1];
                     return;
+                } else {
+
                 }
+
                 console.log(result);
             }
         },
