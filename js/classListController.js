@@ -143,7 +143,7 @@ function changeTimePost() {
     for (let i = 0; i < classStartSchedule.length; i++) {
         if (classStartSchedule[i][0] * 60 + classStartSchedule[i][1] <= min &&
             classEndSchedule[i][0] * 60 + classEndSchedule[i][1] > min) {
-            $(".going-class").html(classList[now.getDay()][i][0]);
+            $(".going-class").html(classList[now.getDay()][i]);
             $(".start-time").html("" + addZeroToTime(classStartSchedule[i][0]) + ":" + addZeroToTime(classStartSchedule[i][1]));
             $(".end-time").html("" + addZeroToTime(classEndSchedule[i][0]) + ":" + addZeroToTime(classEndSchedule[i][1]));
             classProgress = ((min - classStartSchedule[i][0] * 60 - classStartSchedule[i][1]) / (classEndSchedule[i][0] * 60 + classEndSchedule[i][1] - (classStartSchedule[i][0] * 60 + classStartSchedule[i][1])));
