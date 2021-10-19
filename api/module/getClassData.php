@@ -11,7 +11,7 @@ $fields = array(
     1 => $_POST['class']
 );
 
-$mysql->bind_query("SELECT * FROM class_data WHERE class_num = ?", $fields);
+$mysql->bind_query("SELECT class_num, class_list FROM class_data WHERE class_num = ?", $fields);
 if ($mysql->getRowNum() > 0) {
     $return->setType("success");
     $data = $mysql->fetchLine(null);
