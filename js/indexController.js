@@ -1,7 +1,7 @@
 let nowBG = 0;
 let bgList = [
     "bg_sunset",
-    "bg_sagiri",
+    "basketball",
     "Autumn_in_Kanas_by_Wang_Jinyu",
     "cristina-gottardi-wndpWTiDuT0-unsplash",
     "desktop",
