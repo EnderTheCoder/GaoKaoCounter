@@ -84,7 +84,10 @@ div{
     line-height: 3vh;
 }
 
-
+.layui-table {
+    background-color: rgba(0,0,0,0);
+    color: #e2e2e2;
+}
 
 .class-list-header{
     /*padding-bottom: 39px;*/
