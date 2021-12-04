@@ -1,38 +1,40 @@
 
-html{
-    background-image: url("../img/bg/bg_sunset.jpg");
+html {
+    background-image: url("../img/bg/red_road.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100vh;
 }
 
-#wrap{
+#wrap {
     /*background-color: #00F7DE;*/
-    height: 100%;
+    height: 100vh;
     top: 10vh;
     bottom: 10%;
     width: 100%;
+    /*overflow: scroll;*/
 }
 
-div{
+div {
     color: #9F9F9F;
 }
 
-#clock{
-    height: 37vh;
+#clock {
+    height: 30vh;
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
 
-.post-text{
-    height: 15.5vh;
+.post-text {
+    height: 20vh;
 }
 
-#sentence-roller{
-    height: 25.5vh;
+#sentence-roller {
+    height: 30vh;
+    overflow-y: hidden;
 }
 
-.layui-col-lg6 .layui-row{
+.layui-col-lg6 .layui-row {
     /*height: 23.1vh;*/
 }
 
@@ -40,7 +42,7 @@ div{
     height: 80vh;
 }
 
-#clock p{
+#clock p {
     color: #1E9FFF;
     font-size: 6vh;
     text-align: center;
@@ -61,87 +63,136 @@ div{
 }
 
 
-.class-process .layui-progress-big{
+.class-process .layui-progress-big {
 }
 
-.center{
+.center {
     text-align: center;
 }
 
-.post-text{
+.post-text {
     font-size: large;
 }
-.layui-table th{
-    font-size: 3.5vh;
-    line-height: 3.5vh;
-    height: 119px;
+
+.layui-table th {
+    font-size: 2.5vh;
+    line-height: 2.5vh;
+    height: 1.5vw;
     background-color: #393D49;
     color: #92B8B1;
 }
 
-.layui-table td{
-    font-size: 3vh;
-    line-height: 3vh;
+.layui-table td {
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    height: 1.5vw;
+    padding: 0.1vw 0.1vw;
 }
 
 .layui-table {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     color: #e2e2e2;
 }
 
-.class-list-header{
+.class-list-header {
     /*padding-bottom: 39px;*/
 }
 
-.layui-card{
-    background-color: rgba(0,0,0,0.5);
+.layui-card {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.layui-card-header{
+.layui-card-header {
     color: #e2e2e2;
 }
 
-#name-roller .layui-card-body div{
-    height: 200px;
-    width: 200px;
-    background-color: rgba(100,100,100,0.1);
-    float: left;
-    margin-left: 50px;
-    font-size: 150px;
-    line-height: 200px;
-    border: #01AAED solid 5px;
-    color: #FF5722;
-}
+/*#name-roller .layui-card-body div {*/
+/*    height: 10vw;*/
+/*    width: 10vw;*/
+/*    background-color: rgba(100, 100, 100, 0.1);*/
+/*    float: left;*/
+/*    margin-left: 50px;*/
+/*    font-size: 150px;*/
+/*    line-height: 200px;*/
+/*    border: #01AAED solid 5px;*/
+/*    color: #FF5722;*/
+/*}*/
 
-.sentence-roller-left {
-    position: absolute;
+/*.sentence-roller-left {*/
+/*    position: absolute;*/
 
-    height: 22vh;
-    width: 27%;
-    text-align: center;
-    padding-top: 100px;
-}
+/*    height: 22vh;*/
+/*    width: 27%;*/
+/*    text-align: center;*/
+/*    padding-top: 100px;*/
+/*}*/
 
 .sentence-roller-right {
-    position: absolute;
-    height: 22vh;
-    width: 70%;
-    right: 0;
+    /*position: absolute;*/
+    /*height: 22vh;*/
+    /*width: 70%;*/
+    /*right: 0;*/
     text-align: center;
 
 }
 
-.sentence-roller-right p{
-    font-size: 50px;
+.sentence-roller-right p {
+    font-size: 0.8vw;
     color: white;
-    line-height: 50px;
+    line-height: 0.8vw;
 }
 
-.sentence-roller-left p{
-    line-height: 40px;
-    font-size: 24px;
+/*.sentence-roller-left p {*/
+/*    line-height: 1vw;*/
+/*    font-size: 1vw;*/
+/*}*/
+
+/*.sentence-roller-left img {*/
+/*    width: 5vw;*/
+/*}*/
+
+.index-center {
+    width: 30vw;
+    position: absolute;
+    right: 35vw;
+    margin-top: 9vh;
 }
 
-.sentence-roller-left img {
+.index-right {
+    width: 20vw;
+    position: absolute;
+    right: 2.5vw;
+    top: calc((100vh - 19 * 1.5vw - 200px) / 2);
+}
 
+.index-left {
+    width: 20vw;
+    position: absolute;
+    left: 2.5vw;
+}
+
+.clock-day {
+    width: 15vw;
+    position: relative;
+    left: 2vw;
+    top: 2vh;
+}
+.clock-hour {
+    width: 15vw;
+    position: relative;
+    left: 13vw;
+    bottom: 5vh;
+}
+.clock-minute {
+    width: 15vw;
+    position: relative;
+    left: 2vw;
+    bottom: 3vh;
+
+}
+.clock-second {
+    width: 15vw;
+    position: relative;
+    left: 13vw;
+    bottom: 10vh;
 }

@@ -23,9 +23,8 @@
 <!--    </div>-->
 <!--</main>-->
 
-<div class="layui-container" id="wrap">
-    <div class="layui-row">
-        <div class="layui-col-lg3 layui-col-md3 post-text layui-card">
+<div id="wrap">
+        <div class="index-left layui-card">
 
             <div class="layui-card-header">滚动信息栏</div>
             <div class="layui-card-body">
@@ -34,21 +33,22 @@
                 尚在开发中
             </div>
         </div>
-        <div class="layui-col-lg6 layui-col-md6">
-            <div class="layui-container">
-                <div class="layui-row" id="name-roller-row">
+        <div class="index-center">
+                <div id="name-roller-row">
                     <div class="layui-col-lg12 layui-col-md12 post-text layui-card" id="name-roller">
                         <div class="layui-card-header">还没做的点名器</div>
                         <div class="layui-card-body">
-                            Coming soon!
+                            重大更新重：写了前端。我注意到一些班级仍在使用Windows7，在这一系统下高分辨率会显得图标和文字很小，并且六班的线材特殊只能使用低分辨率。
+                            然而我之前的前端版本只适用于高分辨率的屏幕，这导致了在某些班级正常的分辨率和优雅的动态壁纸两者不可兼得。新版的前端能够根据分辨率的不同自动调整
+                            前端中各元素的大小，完美且优雅解决了这一问题。不得不说我实在是太优雅了。
                         </div>
                     </div>
                 </div>
-                <div class="layui-row" id="clock-row">
+                <div id="clock-row">
                     <div class="layui-col-lg12 layui-col-md12 layui-card" id="clock">
                         <div class="layui-card-header">高考倒计时</div>
                         <div class="layui-card-body">
-                            <p>距高考剩余时间：</p>
+                            <p>距高考发卷剩余：</p>
                             <p class="clock-day"><span></span>天</p>
                             <p class="clock-hour"><span></span>时</p>
                             <p class="clock-minute"><span></span>分钟</p>
@@ -56,19 +56,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-row" id="sentence-roller-row">
+                <div id="sentence-roller-row">
                     <div class="layui-col-lg12 layui-col-md12 post-text layui-card" id="sentence-roller">
-                        <div class="layui-card-header">一个不一样的留言板（点击二维码下方第三行字会有有趣的事情发生）</div>
+                        <div class="layui-card-header">这是一个留言板呢（暂时关闭背景切换，会移到设置里并增加更多功能）</div>
                         <div class="layui-card-body">
-                            <div class="sentence-roller-left">
-                                <img src="https://api.nbhao.org/v1/qrcode/make?text=https://zhangnq.com"/>
-                                <p class="sentence-notice">
-                                    扫描二维码添加更多好句
-                                    <br>
-                                    （添加后所有班级可见）
-                                </p>
-                                <p class="sentence-counter">距离下一句切换还有<span></span>秒</p>
-                            </div>
+<!--                            <div class="sentence-roller-left">-->
+<!--                                <img src="https://api.nbhao.org/v1/qrcode/make?text=https://zhangnq.com"/>-->
+<!--                                <p class="sentence-notice">-->
+<!--                                    扫描二维码添加更多好句-->
+<!--                                    <br>-->
+<!--                                    （添加后所有班级可见）-->
+<!--                                </p>-->
+<!--                                <p class="sentence-counter">距离下一句切换还有<span></span>秒</p>-->
+<!--                            </div>-->
                             <div class="sentence-roller-right">
                                 <p>
                                     优雅，永不过时
@@ -79,9 +79,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-        <div class="layui-col-lg3 layui-col-md3 layui-card">
+        <div class="index-right layui-card">
             <div class="layui-card-header class-list-header">优雅的动态信息课程表</div>
             <div class="layui-card-body">
                 <table class="layui-table class-list">
@@ -126,7 +125,6 @@
                 </table>
             </div>
         </div>
-    </div>
 </div>
 
 <!-- jQuery 和 Bootstrap 集成包（集成了 Popper） -->
