@@ -1,6 +1,16 @@
 
+
+@font-face {
+    font-family: kaishu;
+    src: url('../fonts/演示秋鸿楷.ttf');
+}
+@font-face {
+    font-family: verybold;
+    src: url('../fonts/仓耳与墨W05.ttf');
+}
+
 html {
-    background-image: url("../img/bg/red_road.jpg");
+    background-image: url("../img/bg/feng_desktop.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100vh;
@@ -47,6 +57,7 @@ div {
     font-size: 6vh;
     text-align: center;
     line-height: 7vh;
+    font-family: verybold, fangsong;
 }
 
 #clock .clock-day span {
@@ -75,17 +86,17 @@ div {
 }
 
 .layui-table th {
-    font-size: 2.5vh;
-    line-height: 2.5vh;
-    height: 1.5vw;
+    font-size: 1.8vw;
+    line-height: 1.8vw;
+    height: 1.8vw;
     background-color: #393D49;
     color: #92B8B1;
 }
 
 .layui-table td {
-    font-size: 1.5vw;
-    line-height: 1.5vw;
-    height: 1.5vw;
+    font-size: 1.8vw;
+    line-height: 1.8vw;
+    height: 1.8vw;
     padding: 0.1vw 0.1vw;
 }
 
@@ -137,9 +148,10 @@ div {
 }
 
 .sentence-roller-right p {
-    font-size: 0.8vw;
+    font-size: 1.2vw;
     color: white;
-    line-height: 0.8vw;
+    line-height: 1.2vw;
+    font-family: kaishu, serif;
 }
 
 /*.sentence-roller-left p {*/
@@ -162,7 +174,7 @@ div {
     width: 20vw;
     position: absolute;
     right: 2.5vw;
-    top: calc((100vh - 19 * 1.5vw - 200px) / 2);
+    top: calc((100vh - 19 * 1.8vw - 200px) / 2);
 }
 
 .index-left {
