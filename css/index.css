@@ -8,7 +8,14 @@
     font-family: verybold;
     src: url('../fonts/仓耳与墨W05.ttf');
 }
-
+@font-face {
+    font-family: wakanda-useful;
+    src: url('../fonts/BEYNO-BlackPanther.ttf');
+}
+@font-face {
+    font-family: wakanda-bad;
+    src: url('../fonts/wakanda2.ttf');
+}
 html {
     background-image: url("../img/bg/feng_desktop.jpg");
     background-repeat: no-repeat;
@@ -148,9 +155,9 @@ div {
 }
 
 .sentence-roller-right p {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     color: white;
-    line-height: 1.2vw;
+    line-height: 1.25vw;
     font-family: kaishu, serif;
 }
 
@@ -207,4 +214,24 @@ div {
     position: relative;
     left: 13vw;
     bottom: 10vh;
+}
+
+.word-roller {
+    text-align: center;
+    font-family: wakanda-useful, serif;
+    font-size: 4vh;
+    line-height: 3.5vh;
+    color: #aa54ff;
+}
+
+.pronounce {
+    text-align: center;
+    font-size: 2vh;
+    line-height: 2vh;
+    color: #e2e2e2;
+}
+
+.translate {
+    line-height: 3vh;
+    font-size: 2.5vh;
 }
