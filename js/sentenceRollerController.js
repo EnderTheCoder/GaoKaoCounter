@@ -1,7 +1,7 @@
 let qrCodeText = encodeURI((window.location.href).replace("index", "sentenceReceiver"));
 $(".sentence-roller-left img").attr("src", "https://api.nbhao.org/v1/qrcode/make?s=200&text=" + qrCodeText)
 
-let sentenceRollInterval = 180;
+let sentenceRollInterval = 60;
 let nowSecond = 0;
 let sentenceData;
 init();

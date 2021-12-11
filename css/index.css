@@ -155,9 +155,9 @@ div {
 }
 
 .sentence-roller-right p {
-    font-size: 1.5vw;
+    font-size: 1.8vw;
     color: white;
-    line-height: 1.25vw;
+    line-height: 1.5vw;
     font-family: kaishu, serif;
 }
 
@@ -218,20 +218,25 @@ div {
 
 .word-roller {
     text-align: center;
-    font-family: wakanda-useful, serif;
-    font-size: 4vh;
-    line-height: 3.5vh;
-    color: #aa54ff;
+    /*font-family: wakanda-useful, serif;*/
+    font-size: 5vh;
+    line-height: 5vh;
+    color: #00ff23;
 }
 
 .pronounce {
     text-align: center;
     font-size: 2vh;
-    line-height: 2vh;
+    line-height: 2.5vh;
     color: #e2e2e2;
 }
 
 .translate {
     line-height: 3vh;
     font-size: 2.5vh;
+    color: aqua;
+}
+
+.offline-notice {
+    color: red;
 }
