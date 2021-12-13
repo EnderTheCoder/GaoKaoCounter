@@ -45,10 +45,13 @@ layui.use('form', function () {
                 type: "POST",
                 // contentType: "application/x-form-urlencode",
                 dataType: 'json',
-                url: "api/module/insertSentence.php",
+                url: "api/module/sentence.php?action=add",
                 data: data.field,
                 success: function (result) {
-                    layer.alert("提交成功，你的语句将随机出现在桌面上");
+                    if (result.code === 100)
+                        layer.alert("提交成功，你的语句将随机出现在桌面上");
+                    if (result.code === 211)
+                        layer.alert("论文查重率100%，爬");
                 },
                 error: function (e) {
                     layer.alert("提交失败，可能是网络问题")

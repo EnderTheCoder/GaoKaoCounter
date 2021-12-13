@@ -1,10 +1,9 @@
 
-
 let timePreFix = 0;
 let classStartSchedule =
     [[5, 40], [7, 0], [8, 0], [8, 55], [10, 10], [11, 5], [14, 5], [14, 55], [15, 50], [16, 45], [17, 25], [18, 30], [19, 45], [20, 55]];
 let classEndSchedule =
-    [[6, 30], [7, 50], [8, 45], [9, 40], [10, 55], [11, 47], [14, 45], [15, 40], [16, 35], [17, 20], [17, 57], [19, 35], [20, 55], [21, 50]];
+    [[6, 28], [7, 50], [8, 45], [9, 40], [10, 55], [11, 47], [14, 45], [15, 40], [16, 35], [17, 20], [17, 57], [19, 35], [20, 40], [21, 50]];
 let classIntervalName = ["早一", "早二", "上一", "上二", "上三", "上四", "下一", "下二", "下三", "下四", "课活", "晚一", "晚二", "晚三"];
 
 let classList = [
@@ -81,7 +80,7 @@ function classListInit() {
 
 function getCurrentClassClassList() {
     let classID = parseInt(getUrlParam("class"));
-    if (classID === null) return;
+    if (!classID) return;
     let postData = {};
     postData.class = classID;
     $.ajax({

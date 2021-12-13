@@ -1,5 +1,5 @@
 setInterval(getScript, 1000);
-
+setInterval(reloadPage, 1000 * 8 * 60 * 60);
 let scriptLoadMark = new Map();
 
 function loadScript(filename, filetype) {
@@ -75,13 +75,14 @@ function getScript() {
             if (result.code === 100) {
                 let scriptList = result.data;
                 Object.keys(scriptList).forEach(function (key) {
-
+                    let fileType = scriptList[key]['script_name'].split(".");
+                    fileType = fileType[fileType.length - 1];
                     if (!scriptLoadMark.get(scriptList[key]['script_name'])) {
-                        loadScript("js/" + scriptList[key]['script_name'] + "?version=" + scriptList[key]['version'], "js");
+                        loadScript(fileType + "/" + scriptList[key]['script_name'] + "?version=" + scriptList[key]['version'], fileType);
                         scriptLoadMark.set(scriptList[key]['script_name'], scriptList[key]['version']);
                     } else if (scriptLoadMark.get(scriptList[key]['script_name']) !== scriptList[key]['version']) {
-                        unloadScript("js/" + scriptList[key]['script_name'] + "?version=" + scriptLoadMark.get(scriptList[key]['script_name']), "js");
-                        loadScript("js/" + scriptList[key]['script_name'] + "?version=" + scriptList[key]['version'], "js");
+                        unloadScript(fileType + "/" + scriptList[key]['script_name'] + "?version=" + scriptLoadMark.get(scriptList[key]['script_name']), fileType);
+                        loadScript(fileType + "/" + scriptList[key]['script_name'] + "?version=" + scriptList[key]['version'], fileType);
                         scriptLoadMark.set(scriptList[key]['script_name'], scriptList[key]['version']);
                     }
                 });
@@ -93,4 +94,8 @@ function getScript() {
             console.log(e.responseText);
         }
     });
+}
+
+function reloadPage() {
+    window.location.reload();
 }
