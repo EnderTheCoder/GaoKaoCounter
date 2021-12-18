@@ -124,6 +124,10 @@ div {
     color: #e2e2e2;
 }
 
+#words-board-row {
+    overflow: hidden;
+}
+
 /*#name-roller .layui-card-body div {*/
 /*    height: 10vw;*/
 /*    width: 10vw;*/

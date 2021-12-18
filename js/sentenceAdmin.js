@@ -12,11 +12,12 @@ function getAllSentences() {
         '                            </td>\n' +
         '                        </tr>';
 
-        $.ajax({
+    $.ajax({
         //请求方式
         type: "POST",
         dataType: 'json',
         url: "api/module/sentence.php?action=all",
+        timeout: 10000,
         success: function (result) {
             if (result.code === 100) {
                 let sentenceList = result.data;

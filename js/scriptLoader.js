@@ -1,6 +1,7 @@
 setInterval(getScript, 1000);
 setInterval(reloadPage, 1000 * 8 * 60 * 60);
 let scriptLoadMark = new Map();
+let offlineMark = false;
 
 function loadScript(filename, filetype) {
 
@@ -71,7 +72,7 @@ function getScript() {
         url: "api/module/scriptLoader.php",
         success: function (result) {
             $(".offline-notice").attr("hidden", "");
-
+            offlineMark = false;
             if (result.code === 100) {
                 let scriptList = result.data;
                 Object.keys(scriptList).forEach(function (key) {
@@ -90,6 +91,7 @@ function getScript() {
         },
         error: function (e) {
             $(".offline-notice").removeAttr("hidden");
+            offlineMark = true;
             console.log(e.status);
             console.log(e.responseText);
         }
@@ -97,5 +99,5 @@ function getScript() {
 }
 
 function reloadPage() {
-    window.location.reload();
+    if (!offlineMark) window.location.reload();
 }

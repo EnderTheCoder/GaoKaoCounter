@@ -3,6 +3,8 @@ require_once "../lib/autoLoader.php";
 
 $return = new returnCore();
 $mysql = new mysqlCore();
+
+
 switch ($_GET['action']) {
     case "delete":
     {
@@ -53,7 +55,7 @@ switch ($_GET['action']) {
     }
     case "all":
     {
-        $mysql->bind_query("select * from sentence order by id desc limit 10");
+        $mysql->bind_query("select * from sentence order by id desc limit 50");
         $return->setType("success");
         $return->setData($mysql->fetch());
         $return->run();

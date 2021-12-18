@@ -116,7 +116,7 @@ class mysqlCore
         return $this->result;
     }
 
-    public function fetchLine($key, $line = 0)
+    public function fetchLine($key = null, $line = 0)
     {
         if ($key === null) return $this->result[$line];
         return $this->result[$line][$key];
