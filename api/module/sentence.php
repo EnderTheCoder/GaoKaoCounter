@@ -4,7 +4,6 @@ require_once "../lib/autoLoader.php";
 $return = new returnCore();
 $mysql = new mysqlCore();
 
-
 switch ($_GET['action']) {
     case "delete":
     {
@@ -42,6 +41,7 @@ switch ($_GET['action']) {
     {
         $mysql->bind_query("SELECT * FROM sentence");
         $data = $mysql->fetchLine(null, rand(0, $mysql->getRowNum() - 1));
+        $data = mb_convert_encoding($data, "UTF-8");
 
         $return->setType("success");
         $return->setData($data);
@@ -55,9 +55,9 @@ switch ($_GET['action']) {
     }
     case "all":
     {
-        $mysql->bind_query("select * from sentence order by id desc limit 50");
+        $mysql->bind_query("select * from sentence order by id desc");
         $return->setType("success");
-        $return->setData($mysql->fetch());
+        $return->setData(mb_convert_encoding($mysql->fetch(), 'UTF-8'));
         $return->run();
     }
     case "select_by_class":
