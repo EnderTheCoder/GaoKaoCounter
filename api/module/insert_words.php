@@ -5,10 +5,9 @@ $return = new returnCore();
 $mysql = new mysqlCore();
 $totalwords = file_get_contents("3500.txt");
 $words = explode("\n",$totalwords);
-$len = count($words) / 3;
 
 $sql = "INSERT INTO words (word, insert_time, list_belonged_to) VALUES (?,?,?)";
-for ($i = 0;$i < $len;$i++) {
+for ($i = 0;$i < count($words);$i++) {
     if (is_int($i/3)) {
         $params = array(
             1 => $words[$i],

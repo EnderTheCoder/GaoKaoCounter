@@ -1,12 +1,13 @@
 let qrCodeText = encodeURI((window.location.href).replace("index", "sentenceReceiver"));
 $(".sentence-roller-left img").attr("src", "https://api.nbhao.org/v1/qrcode/make?s=200&text=" + qrCodeText)
 
-let sentenceRollInterval = 60;
+let sentenceRollInterval = 12;
 let nowSecond = 0;
-let sentenceData;
+let sentenceData = [];
 init();
 function init() {
     getSentence();
+    change();
     setInterval(change, 1000);
 }
 
@@ -32,7 +33,19 @@ function getClassName(num) {
     return num + "班提交";
 }
 
+function getUrlParam(name) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    let r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值
+}
+
 function change() {
+    if (getUrlParam("class") === "2") {
+        sentenceData['sentence'] = "人若有所向往，何惧道阻且长！";
+        sentenceData['class'] = "2";
+        sentenceData['sentence_from'] = "赵永江";
+    }
     getSentence();
     if (nowSecond === sentenceRollInterval) $(".sentence-roller-right p").html(sentenceData['sentence'] + "——[" + getClassName(sentenceData['class']) + "]" + sentenceData['sentence_from'])
     if (nowSecond < sentenceRollInterval) nowSecond += 1;
