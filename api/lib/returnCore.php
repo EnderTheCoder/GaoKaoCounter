@@ -2,7 +2,7 @@
 
 class returnCore
 {
-    protected $code = array(
+    protected array $code = array(
         'success' => array(
             'code' => 100,
             'msg' => '请求成功',

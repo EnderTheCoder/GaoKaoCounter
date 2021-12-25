@@ -10,11 +10,11 @@ class mysqlCore
 
     const DB_NAME = 'counterDB';
 
-    private $con;
-    private $isError = false;
-    private $ErrorMsg;
-    private $result;
-    private $row;
+    private PDO|null $con;
+    private bool $isError = false;
+    private string $ErrorMsg;
+    private array $result;
+    private int $row;
 
     //在实例化对象时连接数据库
     public function __construct()
@@ -23,7 +23,7 @@ class mysqlCore
     }
 
     //检测是否已经连接数据库。如果已经连接就返回连接，如果没有就进行连接。
-    private function connect()
+    private function connect(): PDO
     {
         if ($this->con != null) return $this->con;
         $dsn = 'mysql:host=' . self::DB_HOST . ';dbname=' . self::DB_NAME;
@@ -42,7 +42,7 @@ class mysqlCore
     }
 
     //执行不带有用户输入的sql语句
-    public function query($sql)
+    public function query($sql): bool
     {
         $conn = $this->connect();
         $conn->query($sql);
@@ -50,7 +50,7 @@ class mysqlCore
     }
 
     //使用绑定参数执行带有输入的sql语句,$sql是sql语句,$params是参数数组
-    public function bind_query($sql, $params = null, $debug = false)
+    public function bind_query($sql, $params = null, $debug = false): bool|array|string
     {
         if ($params != null && !is_array($params)) $params = array(0 => $params);
         try {
@@ -110,7 +110,7 @@ class mysqlCore
         $this->bind_query($sql, $params);
     }
 
-    public function fetch($enableRowNums = false)
+    public function fetch($enableRowNums = false): array
     {
         if ($enableRowNums) $this->result['row'] = countX($this->result);
         return $this->result;
@@ -122,25 +122,25 @@ class mysqlCore
         return $this->result[$line][$key];
     }
 
-    public function getRowNum()
+    public function getRowNum(): int
     {
         return $this->row;
     }
 
     //debug函数，判断是否发生错误
-    public function isError()
+    public function isError(): bool
     {
         return $this->isError;
     }
 
     //debug函数，获取错误信息
-    public function getError()
+    public function getError(): string
     {
         return $this->ErrorMsg;
     }
 
     //获取上一次插入所产生的自增id
-    public function getId()
+    public function getId(): bool|string
     {
         $conn = $this->connect();
         return $conn->lastInsertId();
